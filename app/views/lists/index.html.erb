@@ -1,2 +1,12 @@
-<h1>Lists#index</h1>
-<p>Find me in app/views/lists/index.html.erb</p>
+<h1>投稿一覧</h1>
+
+<!--eachメソッド配列やハッシュがもつ要素を順番に取得して処理-->
+<!--@lists.eachと記述することで、Listレコードの数だけ繰り返し処理を行いlist変数に格納される-->
+<% @lists.each do |list| %>  <!--each 文には=が不要　　　×　＜％＝　〇　＜％ --> 
+
+  <p>タイトル</p>
+  <!--list.[カラム名]と記述することで、レコードのカラムの内容を表示-->
+  <!--list.titleと記述することで、投稿のタイトルが表示される-->
+  <span><%= list.title %></span>
+  
+<% end %>

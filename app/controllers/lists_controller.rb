@@ -1,10 +1,14 @@
 class ListsController < ApplicationController
   
+  
+  #(app/views/lists/new.html.erb)用------------------------------------------
   def new
     # viewへ渡すためのインスタンス変数に空のModelオブジェクトを生成
-    @list = List.new
-  end
+    @list = List.new #List.new Listモデルの情報をもとに新しくオブジェクトが作成され、Listモデルに存在するtitle・bodyが格納できる
 
+  end
+  
+#投稿されたデータを保存してtop画面に戻る-----------------------------------
   def create
     #データを受け取り新規登録するためのインスタンスを作成
     list = List.new(list_params)
@@ -14,8 +18,9 @@ class ListsController < ApplicationController
     redirect_to '/top'
   end  
 
-
+#一覧画面(app/views/lists/index.html.erb)用のアクション
   def index
+    @lists = List.all #List(モデル）.all 全てのレコードをまとめて取得
   end
 
   def show
