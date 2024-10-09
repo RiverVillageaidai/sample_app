@@ -7,6 +7,10 @@
   <p>タイトル</p>
   <!--list.[カラム名]と記述することで、レコードのカラムの内容を表示-->
   <!--list.titleと記述することで、投稿のタイトルが表示される-->
-  <span><%= list.title %></span>
-  
+  <!--<span>< % = list.title %></span>以下コードに変更--> 
+  <span>
+    <!--< %= link_to list.title, "/lists/#{list.id}" %>変更前-->
+    <!--link_to(ﾋﾞｭｰﾍﾙﾊﾟｰ）list.title（変数データベース内listのtitle),list_path(変数dblistのid)-->
+    <%= link_to list.title, list_path(list.id) %>
+  </span>
 <% end %>

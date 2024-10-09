@@ -15,7 +15,7 @@ class ListsController < ApplicationController
     #データをデータベースに保存するためのsaveメソッド実行
     list.save
     #トップ画面へのリダイレクト
-    redirect_to '/top'
+    redirect_to list_path(list.id)
   end  
 
 #一覧画面(app/views/lists/index.html.erb)用のアクション
@@ -23,7 +23,9 @@ class ListsController < ApplicationController
     @lists = List.all #List(モデル）.all 全てのレコードをまとめて取得
   end
 
+#詳細画面表示
   def show
+    @list =List.find(params[:id]) #/lists/1    => List.find(params[:id]) => idが1のレコードを取得
   end
 
   def edit
