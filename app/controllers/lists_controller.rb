@@ -8,13 +8,13 @@ class ListsController < ApplicationController
 
   end
   
-#投稿されたデータを保存してtop画面に戻る-----------------------------------
+#投稿されたデータを保存して詳細画面に移動-----------------------------------
   def create
     #データを受け取り新規登録するためのインスタンスを作成
     list = List.new(list_params)
     #データをデータベースに保存するためのsaveメソッド実行
     list.save
-    #トップ画面へのリダイレクト
+    #詳細画面へのリダイレクト
     redirect_to list_path(list.id)
   end  
 
@@ -23,14 +23,22 @@ class ListsController < ApplicationController
     @lists = List.all #List(モデル）.all 全てのレコードをまとめて取得
   end
 
-#詳細画面表示
+#詳細画面
   def show
     @list =List.find(params[:id]) #/lists/1    => List.find(params[:id]) => idが1のレコードを取得
   end
 
+#編集画面
   def edit
+    @list = List.find(params[:id])
+    
   end
   
+  def update
+    list =List.find(params[:id])
+    list.update(list_params)
+    redirect_to list_path(list.id)
+  end
   
 # ここから下はこのcontrollerの中でしか呼び出せません 
   private
