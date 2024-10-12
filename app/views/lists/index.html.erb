@@ -1,27 +1,22 @@
-<h1>投稿一覧</h1>
-
-<!--eachメソッド配列やハッシュがもつ要素を順番に取得して処理-->
-<!--@lists.eachと記述することで、Listレコードの数だけ繰り返し処理を行いlist変数に格納される-->
-<% @lists.each do |list| %>  <!--each 文には=が不要　　　×　＜％＝　〇　＜％ --> 
-
-  <p>タイトル</p>
-  <!--list.[カラム名]と記述することで、レコードのカラムの内容を表示-->
-  <!--list.titleと記述することで、投稿のタイトルが表示される-->
-  <!--<span>< % = list.title %></span>以下コードに変更--> 
-  <span>
-    <!--< %= link_to list.title, "/lists/#{list.id}" %>変更前-->
-    <!--link_to(ﾋﾞｭｰﾍﾙﾊﾟｰ）list.title（変数データベース内listのtitle),list_path(変数dblistのid)-->
-    <%= link_to list.title, list_path(list.id) %>
-  </span>
+<div class="list-wrap">
   
-  <p>画像</p>
-  <!--list.imageに対して.attached?というimageが存在するかを確認するメソッドを呼び出しています。
- attached?は、画像が存在していればtrue、存在していなければfalseを返します。
-  < % if list .image.attached? %>
-    < %= image_tag list.image, size: "200x200" %>
-  < % else %>
-    < %= image_tag 'no_image', size: "200×200" %>
-  < % end %>-->
-  <%= image_tag list.image, size: "200×200" %>
+<% @lists.each do |list| %>
+  <div class="list-box">
+    
+    <% if list.image.attached? %>
+      <%= image_tag list.image,size: "200x200" %>
+    <% else %>
+      <%= image_tag "no_image", size: "200x200" %>
+    <% end %>
+    
+    <div class="list-comment">
+      <span class="list-body"><%= list.body %></span>
+      <span class="list-title"><%=link_to list.title, list_path(list.id) %></span>
+    </div>
+    
+  </div>
   
 <% end %>
+
+</div>
+
