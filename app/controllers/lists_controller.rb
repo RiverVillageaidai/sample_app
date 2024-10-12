@@ -10,12 +10,16 @@ class ListsController < ApplicationController
   
 #投稿されたデータを保存して詳細画面に移動-----------------------------------
   def create
+    
     #データを受け取り新規登録するためのインスタンスを作成
-    list = List.new(list_params)
-    #データをデータベースに保存するためのsaveメソッド実行
-    list.save
-    #詳細画面へのリダイレクト
-    redirect_to list_path(list.id)
+    @list = List.new(list_params)
+    if @list.save  #データをデータベースに保存するためのsaveメソッド実行
+      #詳細画面へのリダイレクト
+      redirect_to list_path(list.id)
+    else
+      render :new
+    end
+    
   end  
 
 #一覧画面(app/views/lists/index.html.erb)用のアクション

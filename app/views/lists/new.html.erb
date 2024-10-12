@@ -1,5 +1,21 @@
 <h1>新規投稿</h1>
 
+<!--errorsは、モデルにバリデーションをかけたときに、発生したエラーの内容を確認できるメソッドです。
+any? と組み合わせることで、エラーが発生しているかどうかを判定できます。
+また、full_messagesと組み合わせることで、エラーの内容を出力できます。 エラー文は配列で保存されているため、eachを使います
+。-->
+<% if @list.errors.any? %>
+  <% @list.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+ <% end %> 
+
+
+
+
 <%= form_with model: @list, url: '/lists', method: :post do |f| %>
 
   <h4>タイトル</h4>
